@@ -141,7 +141,7 @@ showDeck(CardSpriteSize.ThirtyTwoByThirtyTwo, 12)
 loops.pause(pauseTime)
 
 // Show different deck types
-deck = playingCards.createDeck(DeckType.Poker, true, false, 2)
+deck = playingCards.createDeck(DeckType.Poker, 2)
 dummySprite = sprites.create(img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
