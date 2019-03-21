@@ -21,11 +21,11 @@ There are three standard deck types:
     DeckType.Pinochle
     DeckType.Euchre
 
-See the sample project for information on creating a custom deck.
+See the sample project (first item in the TODO list) for information on creating a custom deck.
 
 ## TODO
 
-- [ ] Add a reference for your blocks here
+- [X] See it in action at https://makecode.com/_2PbT3F6a0eR8
 - [ ] Add "icon.png" image (300x200) in the root folder
 - [X] Add "- beta" to the GitHub project description if you are still iterating it.
 - [ ] Turn on your automated build on https://travis-ci.org
