@@ -1287,13 +1287,13 @@ namespace playingCards {
     /**
      * Create a standard deck of cards.
      * @param {DeckType} deckType - Type of deck to build.
+     * @param {number} numJokers - Number of jokers to add to the deck.
      * @param {boolean} isAceHigh - Whether Aces have highest value.
      * @param {boolean} areFacesTen - Whether face cards are worth 10 points.
-     * @param {number} numJokers - Number of jokers to add to the deck.
      * @return {Shoe} - Single deck of cards.
      */
-    export function createDeck(deckType: DeckType = DeckType.Poker, isAceHigh: boolean = true,
-        areFacesTen: boolean = false, numJokers: number = 0): Shoe {
+    export function createDeck(deckType: DeckType = DeckType.Poker, numJokers: number = 0,
+            isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
         return new Shoe(deckType, 1, isAceHigh, areFacesTen, numJokers)
     }   // createDeck()
 
@@ -1341,13 +1341,13 @@ namespace playingCards {
      * Create a standard shoe of cards.
      * @param {DeckType} deckType - Type of deck to build.
      * @param {number} numDecks - Number of decks to include in the shoe.
+     * @param {number} numJokers - Number of jokers to add to the deck.
      * @param {boolean} isAceHigh - Whether Aces have highest value.
      * @param {boolean} areFacesTen - Whether face cards are worth 10 points.
-     * @param {number} numJokers - Number of jokers to add to the deck.
      * @return {Shoe} - Single deck of cards.
      */
-    export function createShoe(deckType: DeckType = DeckType.Poker, numDecks: number = 3, isAceHigh: boolean = true,
-            areFacesTen: boolean = false, numJokers: number = 0): Shoe {
+    export function createShoe(deckType: DeckType = DeckType.Poker, numDecks: number = 3, numJokers: number = 0,
+            isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
         return new Shoe(deckType, numDecks, isAceHigh, areFacesTen, numJokers)
     }   // createShoe()
 }   // namespace playingCards
