@@ -30,6 +30,7 @@ enum DeckType {
     Poker,
     Pinochle,
     Euchre,
+    //% block="Custom (not for use in Blocks)"
     Custom
 }   // enum DeckType
 
@@ -44,6 +45,7 @@ enum CardSpriteSize {
 /**
  * Immutable representation of a card
  */
+//% blockNamespace=playingCards group="Cards"
 class Card {
     private _aceHigh :boolean
     private _id: number
@@ -78,37 +80,48 @@ class Card {
     }   // constructor()
 
     /**
-     * Returns face value of card.
+     * @return {number} The face value of the card.
      */
+    //% blockCombine group="Cards"
+    //% block="face value"
     public get faceValue(): number {
         return this._pipValue
     }   // get pipValue()
 
     /**
-     * Returns the ID value of card.
+     * @return {number} The ID value of the card.
      */
     public get id(): number {
         return this._id
     }   // get id()
 
     /**
-     * Returns whether aces are high for the deck where this card originates.
+     * @return {boolean} Whether aces are high for the deck where this card originates.
      */
     public get isAceHigh(): boolean {
         return this._aceHigh
     }   // get isAceHigh()
 
     /**
-     * Returns whether this card is equal in face value to another card.
+     * @return {boolean} Whether this card is equal in face value to another card.
+     *                   Note: Face cards will be equal if deck was configured with
+     *                   face cards all worth 10 points.
      */
+    //% blockId=playing_cards_card_is_equal_to
+    //% block="%myCard|has face value equal to card %card"
+    //% group="Cards"
     public isEqualTo(card: Card): boolean {
         return (this._pipValue === card.faceValue)
     }   // isEqualTo()
 
     /**
-     * Returns whether this card has a higher face value than another card.
-     * Note: Face cards will be equal if deck was configured with face cards all worth 10 points.
+     * @return {boolean} Whether this card is higher in face value than another card.
+     *                   Note: Face cards will be equal if deck was configured with
+     *                   face cards all worth 10 points.
      */
+    //% blockId=playing_cards_card_is_greater_than
+    //% block="%myCard|has higher face value than card %card"
+    //% group="Cards"
     public isGreaterThan(card: Card): boolean {
         if (this._aceHigh && this._pip === StdFace.Ace && card.pipId !== StdFace.Ace && card.pipId !== StdFace.Joker) {
             return true
@@ -118,9 +131,13 @@ class Card {
     }   // isGreaterThan()
 
     /**
-     * Returns whether this card has a lower face value than another card.
-     * Note: Face cards will be equal if deck was configured with face cards all worth 10 points.
+     * @return {boolean} Whether this card is lower in face value than another card.
+     *                   Note: Face cards will be equal if deck was configured with
+     *                   face cards all worth 10 points.
      */
+    //% blockId=playing_cards_card_is_less_than
+    //% block="%myCard|has lower face value than card %card"
+    //% group="Cards"
     public isLessThan(card: Card): boolean {
         if (this._aceHigh && this._pip === StdFace.Ace && card.pipId !== StdFace.Ace && card.pipId !== StdFace.Joker) {
             return false
@@ -130,37 +147,47 @@ class Card {
     }   // isLessThan()
 
     /**
-     * Returns the full name of the card (e.g. "Queen of Hearts").
+     * @return {string} The full name of the card (for example, "Queen of Hearts").
      */
+    //% blockCombine group="Cards"
+    //% block="full name"
     public get name(): string {
         return this._name
     }   // get name()
 
     /**
-     * Returns the ID of the card face.
-     * Can be used to compare ranks even if deck was configured with face cards all worth 10 points.
+     * @return {number} The ID of the card face. Can be used to compare ranks even if
+     *                  deck was configured with face cards all worth 10 points.
      */
+    //% blockCombine group="Cards"
+    //% block="face number"
     public get pipId(): number {
         return this._pip
     }   // get pipId()
 
     /**
-     * Returns the name of the card face (e.g. "King").
+     * @return {string} The name of the card face (for example, "King").
      */
+    //% blockCombine group="Cards"
+    //% block="face name"
     public get pipName(): string {
         return this._pipName
     }   // get pipName()
 
     /**
-     * Returns the name of the suit (e.g. "Spades")
+     * @return {string} The name of the suit (for example, "Spades")
      */
+    //% blockCombine group="Cards"
+    //% block="suit name"
     public get suitName(): string {
         return this._suitName
     }   // get suitName()
 
     /**
-     * Returns the ID of the suit.
+     * @return {number} The ID of the suit.
      */
+    //% blockCombine group="Cards"
+    //% block="suit number"
     public get suitValue(): number {
         return this._suit
     }   // get suitValue()
@@ -791,9 +818,9 @@ class Deck {
     /**
      * Initialize a deck of cards. Not intended for public use - use Shoe instead.
      * @param {DeckType} deckType - Type of deck to create.
+     * @param {number} numJokers - In a standard deck, indicates how many jokers to add to the deck.
      * @param {boolean} isAceHigh - In a standard deck, indicates whether Aces have highest value.
      * @param {boolean} areFacesTen - In a standard deck, indicates whether face cards are worth 10 points.
-     * @param {number} numJokers - In a standard deck, indicates how many jokers to add to the deck.
      * @param {string[]} customSuitNames - In a custom deck, lists the suit names.
      * @param {number[]} customSuitColors - In a custom deck, lists the colors associated with the custom suits.
      * @param {string[]} customPipNames - In a custom deck, lists the face names.
@@ -804,8 +831,8 @@ class Deck {
      * @param {Image[]} customCardBases - In a custom deck, the base images to use for each suit. Last image is used for any unsuited cards.
      * @param {image.Font} customFont - In a custom deck, the font to use to print the faces on the card images.
      */
-    constructor(deckType: DeckType = DeckType.Poker, isAceHigh: boolean = true, areFacesTen: boolean = false,
-            numJokers: number = 0,
+    constructor(deckType: DeckType = DeckType.Poker, numJokers: number = 0,
+            isAceHigh: boolean = true, areFacesTen: boolean = false,
             customSuitNames: string[] = null, customSuitColors: number[] = null,
             customPipNames: string[] = null, customPipValues: number[] = null,
             customPipRepeats: number = 1, customPipPrint: string[] = null,
@@ -830,35 +857,36 @@ class Deck {
     }   // constructor()
 
     /**
-     * Returns whether face cards are worth 10 points.
+     * @return {boolean} Whether face cards are worth 10 points.
      */
     public get areFacesTen(): boolean {
         return this._areFacesTen
     }   // areFacesTen()
 
     /**
-     * Returns an array of card IDs in this deck.
+     * @return {number[]} Array of card IDs in this deck.
      */
     public get cardIds(): number[] {
         return this._cards
     }   // get cardIds()
 
     /**
-     * Returns the deck type.
+     * @return {DeckType} The deck type.
      */
     public get deckType(): DeckType {
         return this._deckType
     }   // get deckType
 
     /**
-     * Returns whether this deck includes jokers. Always false in custom decks.
+     * @return {boolean} Whether this deck includes jokers. Always false in custom decks.
      */
     public get hasJokers(): boolean {
         return (this._numJokers > 0)
     }   // get hasJokers()
 
     /**
-     * Returns whether Aces are considers high-cards in this deck. Always false in custom decks.
+     * @return {boolean} Whether Aces are considers high-cards in this deck.
+     *                   Always false in custom decks.
      */
     public get isAceHigh(): boolean {
         return this._isAceHigh
@@ -1075,6 +1103,7 @@ class Deck {
 /**
  * Representation of a single deck or multiple decks of playing cards.
  */
+//% blockNamespace=playingCards
 class Shoe {
     private _currCard: number
     private _deck: Deck
@@ -1099,15 +1128,15 @@ class Shoe {
      * @param {image.Font} customFont - In a custom deck, the font to use to print the faces on the card images.
      */
     constructor(deckType: DeckType = DeckType.Poker, numDecks: number = 1,
-            isAceHigh: boolean = true, areFacesTen: boolean = false,
             numJokers: number = 0,
+            isAceHigh: boolean = true, areFacesTen: boolean = false,
             customSuitNames: string[] = null, customSuitColors: number[] = null,
             customPipNames: string[] = null, customPipValues: number[] = null,
             customPipRepeats: number = 1, customPipPrint: string[] = null,
             unsuitedPips: number[] = null,
             customCardBases: Image[] = null, customFont: image.Font = null) {
         this._numDecks = numDecks
-        this._deck = new Deck(deckType, isAceHigh, areFacesTen, numJokers,
+        this._deck = new Deck(deckType, numJokers, isAceHigh, areFacesTen,
             customSuitNames, customSuitColors, customPipNames, customPipValues,
             customPipRepeats, customPipPrint, unsuitedPips,
             customCardBases, customFont)
@@ -1115,29 +1144,34 @@ class Shoe {
     }   // constructor()
 
     /**
-     * Returns whether face cards are worth 10 points.
+     * @return {boolean} Whether face cards are worth 10 points.
      */
     public get areFacesTen(): boolean {
         return this._deck.areFacesTen
     }   // get areFacesTen()
 
     /**
-     * Returns whether there are cards remaining in the shoe.
+     * @return {boolean} Whether there are cards remaining in the shoe.
      */
+    //% blockCombine group="Shoes (Decks)"
+    //% block="has cards remaining"
     public get hasMoreCards(): boolean {
         return (this._currCard < this._shoe.length)
     }   // get hasMoreCards()
 
     /**
-     * Returns whether Aces are considers high-cards in this deck. Always false in custom decks.
+     * @return {boolean} Whether Aces are considers high-cards in this deck
+     *                   Always false in custom decks.
      */
     public get isAceHigh(): boolean {
         return this._deck.isAceHigh
     }   // get isAceHigh()
 
     /**
-     * Returns the next Card object in the shoe.
+     * @return {Card} The next Card object in the shoe.
      */
+    //% blockCombine group="Shoes (Decks)"
+    //% block="get next card"
     public get nextCard(): Card {
         if (this._currCard < this._shoe.length) {
             let toReturn: Card = this._deck.getCard(this._shoe[this._currCard])
@@ -1149,15 +1183,19 @@ class Shoe {
     }   // get nextCard()
 
     /**
-     * Returns the total number of cards in the shoe.
+     * @return {number} Total number of cards in the shoe.
      */
+    //% blockCombine group="Shoes (Decks)"
+    //% block="total number of cards"
     public get numCards(): number {
         return this._shoe.length
     }   // get numCards()
 
     /**
-     * Returns the number of cards remaining in the shoe.
+     * @return {number} Number of cards remaining in the shoe.
      */
+    //% blockCombine group="Shoes (Decks)"
+    //% block="number of cards left"
     public get numCardsRemain(): number {
         return this._shoe.length - this._currCard
     }   // get numCardsRemain()
@@ -1168,6 +1206,10 @@ class Shoe {
      * @param {CardSpriteSize} size - Size of image to return. Ignored for custom decks.
      * @return {Image} Image for given Card object.
      */
+    //% blockId=playing_cards_shoe_get_card_image
+    //% group="Shoes (Decks)"
+    //% block="from|%myShoe|get card image for %card || of size %size"
+    //% size.defl=CardSpriteSize.SixteenBySixteen
     public getCardImage(card: Card, size: CardSpriteSize = CardSpriteSize.SixteenBySixteen): Image {
         return this._deck.getCardImage(card, size)
     }   // getCardImage()
@@ -1175,6 +1217,9 @@ class Shoe {
     /**
      * Resets the shoe without shuffling the cards.
      */
+    //% blockId=playing_cards_shoe_reset
+    //% group="Shoes (Decks)"
+    //% block="reset cards in shoe (deck) %myShoe"
     public reset(): void {
         this._currCard = 0
     }   // reset()
@@ -1182,6 +1227,9 @@ class Shoe {
     /**
      * Returns all cards to the shoe and shuffles them.
      */
+    //% blockId=playing_cards_shoe_shuffle
+    //% group="Shoes (Decks)"
+    //% block="shuffle cards in shoe (deck) %myShoe"
     public shuffle(): void {
         for (let index: number = 0; index < this._shoe.length; index++) {
             let swap: number = Math.randomRange(0, this._shoe.length - 1)
@@ -1219,6 +1267,7 @@ class Shoe {
 }   // class Shoe
 
 //% weight=0 color=#b8860b icon="\uf004" block="Playing Cards"
+//% groups=['Shoes (Decks)', 'Cards', 'others']
 namespace playingCards {
     /**
      * Create a custom deck of cards.
@@ -1280,7 +1329,7 @@ namespace playingCards {
         if (font == null) {
             font = image.font8
         }   // if (! font)
-        return new Shoe(DeckType.Custom, numDecks, false, false, 0, suitNames, suitColors,
+        return new Shoe(DeckType.Custom, numDecks, 0, false, false, suitNames, suitColors,
             pipNames, pipValues, pipRepeats, pipPrint, unsuitedPips, cardBases, font)
     }   // createCustomShoe()
 
@@ -1294,8 +1343,66 @@ namespace playingCards {
      */
     export function createDeck(deckType: DeckType = DeckType.Poker, numJokers: number = 0,
             isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
-        return new Shoe(deckType, 1, isAceHigh, areFacesTen, numJokers)
+        return new Shoe(deckType, 1, numJokers, isAceHigh, areFacesTen)
     }   // createDeck()
+
+    /**
+     * Creates a standard deck of cards. Simpler function for use in Blocks. Aces are high.
+     * @param {DeckType} deckType - Type of deck to build.
+     * @param {number} numJokers - Number of jokers to add to the deck.
+     * @return {Shoe} - Single deck of cards.
+     */
+    //% blockId=playing_cards_create_deck_simple
+    //% group="Shoes (Decks)"
+    //% block="create deck || of type %deckType with %numJokers jokers"
+    //% deckType.defl=DeckType.Poker numJokers.defl=0
+    //% expandableArgumentMode="toggle"
+    //% hidden
+    export function createDeckSimple(deckType: DeckType = DeckType.Poker, numJokers: number = 0): Shoe {
+        return new Shoe(deckType, 1, numJokers)
+    }   // createDeckSimple()
+
+    /**
+     * Create a deck of standard poker cards. Simple function meant for use in Blocks.
+     * Might be useful in JavaScript, too.
+     */
+    //% blockId=playing_cards_create_poker_deck
+    //% group="Shoes (Decks)"
+    //% block="create standard poker deck"
+    export function createPokerDeck(): Shoe {
+        return new Shoe()
+    }   // createPokerDeck
+
+    /**
+     * Create a standard shoe of cards.
+     * @param {DeckType} deckType - Type of deck to build.
+     * @param {number} numDecks - Number of decks to include in the shoe.
+     * @param {number} numJokers - Number of jokers to add to the deck.
+     * @param {boolean} isAceHigh - Whether Aces have highest value.
+     * @param {boolean} areFacesTen - Whether face cards are worth 10 points.
+     * @return {Shoe} - Single deck of cards.
+     */
+    export function createShoe(deckType: DeckType = DeckType.Poker, numDecks: number = 3, numJokers: number = 0,
+            isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
+        return new Shoe(deckType, numDecks, numJokers, isAceHigh, areFacesTen)
+    }   // createShoe()
+
+    /**
+     * Create a standard shoe of cards. Simpler function for use in Blocks. Aces are high.
+     * @param {DeckType} deckType - Type of deck to build.
+     * @param {number} numDecks - Number of decks to include in the shoe.
+     * @param {number} numJokers - Number of jokers to add to the deck.
+     * @return {Shoe} - Single deck of cards.
+     */
+    //% blockId=playing_cards_create_shoe_simple
+    //% group="Shoes (Decks)"
+    //% block="create shoe || of type %deckType with %numDecks decks and %numJokers jokers"
+    //% deckType.defl=DeckType.Poker numDecks.defl=3 numJokers.defl=0
+    //% expandableArgumentMode="toggle"
+    //% hidden
+    export function createShoeSimple(deckType: DeckType = DeckType.Poker, numDecks: number = 3, numJokers: number = 0): Shoe {
+        return new Shoe(deckType, numDecks, numJokers)
+    }   // createShoeSimple()
 
     /**
      * Compare face values of cards.
@@ -1336,18 +1443,4 @@ namespace playingCards {
             }   // if (card1.faceValue < card2.faceValue)
         }   // if (card1.isAceHigh)
     }   // compareCards()
-
-    /**
-     * Create a standard shoe of cards.
-     * @param {DeckType} deckType - Type of deck to build.
-     * @param {number} numDecks - Number of decks to include in the shoe.
-     * @param {number} numJokers - Number of jokers to add to the deck.
-     * @param {boolean} isAceHigh - Whether Aces have highest value.
-     * @param {boolean} areFacesTen - Whether face cards are worth 10 points.
-     * @return {Shoe} - Single deck of cards.
-     */
-    export function createShoe(deckType: DeckType = DeckType.Poker, numDecks: number = 3, numJokers: number = 0,
-            isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
-        return new Shoe(deckType, numDecks, isAceHigh, areFacesTen, numJokers)
-    }   // createShoe()
 }   // namespace playingCards
