@@ -25,7 +25,9 @@ See the sample project (first item in the TODO list) for information on creating
 
 ## TODO
 
-- [X] See it in action at https://makecode.com/_2PbT3F6a0eR8
+- [X] See it in action at https://makecode.com/_2PbT3F6a0eR8 (JavaScript)
+- [X] See it in action at https://makecode.com/_3xoEXCL1KRJ6 (Blocks)
+- [X] See it in action at https://makecode.com/_bmRV2RE6oFk8 (Acey Ducey game)
 - [X] Add blocks interface (1.0.4).
 - [ ] Add "icon.png" image (300x200) in the root folder
 - [X] Add "- beta" to the GitHub project description if you are still iterating it. (Removed beta status in v. 1.0.4.)
