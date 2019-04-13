@@ -47,7 +47,7 @@ enum CardSpriteSize {
  */
 //% blockNamespace=playingCards group="Cards"
 class Card {
-    private _aceHigh :boolean
+    private _aceHigh: boolean
     private _id: number
     private _name: string
     private _pip: number
@@ -84,6 +84,7 @@ class Card {
      */
     //% blockCombine group="Cards"
     //% block="face value"
+    //% callInDebugger
     public get faceValue(): number {
         return this._pipValue
     }   // get pipValue()
@@ -151,6 +152,7 @@ class Card {
      */
     //% blockCombine group="Cards"
     //% block="full name"
+    //% callInDebugger
     public get name(): string {
         return this._name
     }   // get name()
@@ -161,6 +163,7 @@ class Card {
      */
     //% blockCombine group="Cards"
     //% block="face number"
+    //% callInDebugger
     public get pipId(): number {
         return this._pip
     }   // get pipId()
@@ -170,6 +173,7 @@ class Card {
      */
     //% blockCombine group="Cards"
     //% block="face name"
+    //% callInDebugger
     public get pipName(): string {
         return this._pipName
     }   // get pipName()
@@ -179,6 +183,7 @@ class Card {
      */
     //% blockCombine group="Cards"
     //% block="suit name"
+    //% callInDebugger
     public get suitName(): string {
         return this._suitName
     }   // get suitName()
@@ -188,6 +193,7 @@ class Card {
      */
     //% blockCombine group="Cards"
     //% block="suit number"
+    //% callInDebugger
     public get suitValue(): number {
         return this._suit
     }   // get suitValue()
@@ -832,12 +838,12 @@ class Deck {
      * @param {image.Font} customFont - In a custom deck, the font to use to print the faces on the card images.
      */
     constructor(deckType: DeckType = DeckType.Poker, numJokers: number = 0,
-            isAceHigh: boolean = true, areFacesTen: boolean = false,
-            customSuitNames: string[] = null, customSuitColors: number[] = null,
-            customPipNames: string[] = null, customPipValues: number[] = null,
-            customPipRepeats: number = 1, customPipPrint: string[] = null,
-            unsuitedPips: number[] = null,
-            customCardBases: Image[] = null, customFont: image.Font = null) {
+        isAceHigh: boolean = true, areFacesTen: boolean = false,
+        customSuitNames: string[] = null, customSuitColors: number[] = null,
+        customPipNames: string[] = null, customPipValues: number[] = null,
+        customPipRepeats: number = 1, customPipPrint: string[] = null,
+        unsuitedPips: number[] = null,
+        customCardBases: Image[] = null, customFont: image.Font = null) {
         this._areFacesTen = areFacesTen
         this._deckType = deckType
         this._isAceHigh = isAceHigh
@@ -1128,13 +1134,13 @@ class Shoe {
      * @param {image.Font} customFont - In a custom deck, the font to use to print the faces on the card images.
      */
     constructor(deckType: DeckType = DeckType.Poker, numDecks: number = 1,
-            numJokers: number = 0,
-            isAceHigh: boolean = true, areFacesTen: boolean = false,
-            customSuitNames: string[] = null, customSuitColors: number[] = null,
-            customPipNames: string[] = null, customPipValues: number[] = null,
-            customPipRepeats: number = 1, customPipPrint: string[] = null,
-            unsuitedPips: number[] = null,
-            customCardBases: Image[] = null, customFont: image.Font = null) {
+        numJokers: number = 0,
+        isAceHigh: boolean = true, areFacesTen: boolean = false,
+        customSuitNames: string[] = null, customSuitColors: number[] = null,
+        customPipNames: string[] = null, customPipValues: number[] = null,
+        customPipRepeats: number = 1, customPipPrint: string[] = null,
+        unsuitedPips: number[] = null,
+        customCardBases: Image[] = null, customFont: image.Font = null) {
         this._numDecks = numDecks
         this._deck = new Deck(deckType, numJokers, isAceHigh, areFacesTen,
             customSuitNames, customSuitColors, customPipNames, customPipValues,
@@ -1155,6 +1161,7 @@ class Shoe {
      */
     //% blockCombine group="Shoes (Decks)"
     //% block="has cards remaining"
+    //% callInDebugger
     public get hasMoreCards(): boolean {
         return (this._currCard < this._shoe.length)
     }   // get hasMoreCards()
@@ -1172,6 +1179,7 @@ class Shoe {
      */
     //% blockCombine group="Shoes (Decks)"
     //% block="get next card"
+    //% callInDebugger
     public get nextCard(): Card {
         if (this._currCard < this._shoe.length) {
             let toReturn: Card = this._deck.getCard(this._shoe[this._currCard])
@@ -1187,6 +1195,7 @@ class Shoe {
      */
     //% blockCombine group="Shoes (Decks)"
     //% block="total number of cards"
+    //% callInDebugger
     public get numCards(): number {
         return this._shoe.length
     }   // get numCards()
@@ -1196,6 +1205,7 @@ class Shoe {
      */
     //% blockCombine group="Shoes (Decks)"
     //% block="number of cards left"
+    //% callInDebugger
     public get numCardsRemain(): number {
         return this._shoe.length - this._currCard
     }   // get numCardsRemain()
@@ -1283,10 +1293,10 @@ namespace playingCards {
      * @return {Shoe} Single deck of cards.
      */
     export function createCustomDeck(suitNames: string[], suitColors: number[],
-            pipNames: string[], pipValues: number[],
-            pipRepeats: number = 1, pipPrint: string[] = null,
-            unsuitedPips: number[] = null,
-            cardBases: Image[] = null, font: image.Font = null): Shoe {
+        pipNames: string[], pipValues: number[],
+        pipRepeats: number = 1, pipPrint: string[] = null,
+        unsuitedPips: number[] = null,
+        cardBases: Image[] = null, font: image.Font = null): Shoe {
         return createCustomShoe(1, suitNames, suitColors,
             pipNames, pipValues, pipRepeats, pipPrint, unsuitedPips,
             cardBases, font)
@@ -1307,11 +1317,11 @@ namespace playingCards {
      * @return {Shoe} Shoe of cards.
      */
     export function createCustomShoe(numDecks: number,
-            suitNames: string[], suitColors: number[],
-            pipNames: string[], pipValues: number[],
-            pipRepeats: number = 1, pipPrint: string[] = null,
-            unsuitedPips: number[] = null,
-            cardBases: Image[] = null, font: image.Font = null): Shoe {
+        suitNames: string[], suitColors: number[],
+        pipNames: string[], pipValues: number[],
+        pipRepeats: number = 1, pipPrint: string[] = null,
+        unsuitedPips: number[] = null,
+        cardBases: Image[] = null, font: image.Font = null): Shoe {
         if (pipPrint == null) {
             pipPrint = []
             for (let pip of pipNames) {
@@ -1342,7 +1352,7 @@ namespace playingCards {
      * @return {Shoe} - Single deck of cards.
      */
     export function createDeck(deckType: DeckType = DeckType.Poker, numJokers: number = 0,
-            isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
+        isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
         return new Shoe(deckType, 1, numJokers, isAceHigh, areFacesTen)
     }   // createDeck()
 
@@ -1383,7 +1393,7 @@ namespace playingCards {
      * @return {Shoe} - Single deck of cards.
      */
     export function createShoe(deckType: DeckType = DeckType.Poker, numDecks: number = 3, numJokers: number = 0,
-            isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
+        isAceHigh: boolean = true, areFacesTen: boolean = false): Shoe {
         return new Shoe(deckType, numDecks, numJokers, isAceHigh, areFacesTen)
     }   // createShoe()
 
