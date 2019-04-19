@@ -1,5 +1,7 @@
 # MakeCode Arcade Playing Cards
 
+[![Build Status](https://travis-ci.com/robo-technical-group/pxt-arcade-playing-cards.svg?branch=master)](https://travis-ci.com/robo-technical-group/pxt-arcade-playing-cards)
+
 Extension used to represent playing cards. Build your own custom decks! Works with Blocks now, too!
 
 ## Usage
