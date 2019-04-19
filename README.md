@@ -33,7 +33,7 @@ See the sample project (first item in the TODO list) for information on creating
 - [X] Add blocks interface (1.0.4).
 - [ ] Add "icon.png" image (300x200) in the root folder
 - [X] Add "- beta" to the GitHub project description if you are still iterating it. (Removed beta status in v. 1.0.4.)
-- [ ] Turn on your automated build on https://travis-ci.org
+- [X] Turn on your automated build on https://travis-ci.org (1.0.7)
 - [X] Use "pxt bump" to create a tagged release on GitHub
 - [ ] Get your package reviewed and approved https://arcade.makecode.com/packages/approval
 
