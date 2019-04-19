@@ -37,7 +37,10 @@ See the sample project (first item in the TODO list) for information on creating
 - [X] Use "pxt bump" to create a tagged release on GitHub
 - [ ] Get your package reviewed and approved https://arcade.makecode.com/packages/approval
 
-Read more about building MakeCode extensions at https://arcade.makecode.com/packages/build-your-own
+Visit the following links to read more about building MakeCode custom blocks and extensions:
+- https://arcade.makecode.com/blocks/custom
+- https://makecode.com/defining-blocks
+- https://makecode.com/extensions/getting-started
 
 ## License
 

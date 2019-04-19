@@ -110,6 +110,7 @@ class Card {
      */
     //% blockId=playing_cards_card_is_equal_to
     //% block="%myCard|has face value equal to card %card"
+    //% card.shadow="variables_get"
     //% group="Cards"
     public isEqualTo(card: Card): boolean {
         return (this._pipValue === card.faceValue)
@@ -122,6 +123,7 @@ class Card {
      */
     //% blockId=playing_cards_card_is_greater_than
     //% block="%myCard|has higher face value than card %card"
+    //% card.shadow="variables_get"
     //% group="Cards"
     public isGreaterThan(card: Card): boolean {
         if (this._aceHigh && this._pip === StdFace.Ace && card.pipId !== StdFace.Ace && card.pipId !== StdFace.Joker) {
@@ -138,6 +140,7 @@ class Card {
      */
     //% blockId=playing_cards_card_is_less_than
     //% block="%myCard|has lower face value than card %card"
+    //% card.shadow="variables_get"
     //% group="Cards"
     public isLessThan(card: Card): boolean {
         if (this._aceHigh && this._pip === StdFace.Ace && card.pipId !== StdFace.Ace && card.pipId !== StdFace.Joker) {
@@ -1219,7 +1222,7 @@ class Shoe {
     //% blockId=playing_cards_shoe_get_card_image
     //% group="Shoes (Decks)"
     //% block="from|%myShoe|get card image for %card || of size %size"
-    //% size.defl=CardSpriteSize.SixteenBySixteen
+    //% size.defl=CardSpriteSize.SixteenBySixteen card.shadow="variables_get"
     public getCardImage(card: Card, size: CardSpriteSize = CardSpriteSize.SixteenBySixteen): Image {
         return this._deck.getCardImage(card, size)
     }   // getCardImage()
