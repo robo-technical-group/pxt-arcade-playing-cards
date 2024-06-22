@@ -12,7 +12,8 @@
         "card.ts",
         "enums.ts",
         "shoe.ts",
-        "deck.ts"
+        "deck.ts",
+        "README.md"
     ],
     "testDependencies": {},
     "targetVersions": {
