@@ -1,17 +1,14 @@
 {
     "name": "pxt-arcade-playing-cards",
-    "version": "1.0.8",
-    "description": "",
+    "version": "2.0.0",
+    "files": [
+        "main.ts"
+    ],
+    "supportedTargets": [
+        "arcade"
+    ],
     "dependencies": {
         "device": "*"
     },
-    "files": [
-        "README.md",
-        "main.ts",
-        "playing-cards.ts"
-    ],
-    "testFiles": [
-        "test.ts"
-    ],
-    "public": false
+    "testDependencies": {}
 }
