@@ -3,7 +3,6 @@
  */
 //% blockNamespace=PlayingCards group="Cards"
 class Card {
-    private _aceHigh: boolean
     private _id: number
     private _name: string
     private _pip: number
@@ -11,6 +10,7 @@ class Card {
     private _pipValue: number
     private _suit: number
     private _suitName: string
+    private _text: string
 
     /**
      * Initialize a playing card.
@@ -24,8 +24,7 @@ class Card {
      * @param {boolean} aceHigh - Whether an Ace is high or low (used in comparisons) 
     */
     constructor(id: number, name: string, pipId: number, faceValue: number,
-        pipName: string, suitValue: number, suitName: string, aceHigh: boolean = true) {
-        this._aceHigh = aceHigh
+        pipName: string, suitValue: number, suitName: string, text: string) {
         this._id = id
         this._name = name
         this._pip = pipId
@@ -33,6 +32,7 @@ class Card {
         this._pipValue = faceValue
         this._suit = suitValue
         this._suitName = suitName
+        this._text = text
     }   // constructor()
 
     /**
@@ -53,13 +53,6 @@ class Card {
     }   // get id()
 
     /**
-     * @return {boolean} Whether aces are high for the deck where this card originates.
-     */
-    public get isAceHigh(): boolean {
-        return this._aceHigh
-    }   // get isAceHigh()
-
-    /**
      * @return {boolean} Whether this card is equal in face value to another card.
      *                   Note: Face cards will be equal if deck was configured with
      *                   face cards all worth 10 points.
@@ -69,7 +62,7 @@ class Card {
     //% card.shadow="variables_get"
     //% group="Cards"
     public isEqualTo(card: Card): boolean {
-        return (this._pipValue === card.faceValue)
+        return (this.faceValue === card.faceValue)
     }   // isEqualTo()
 
     /**
@@ -82,11 +75,7 @@ class Card {
     //% card.shadow="variables_get"
     //% group="Cards"
     public isGreaterThan(card: Card): boolean {
-        if (this._aceHigh && this._pip === StdFace.Ace && card.pipId !== StdFace.Ace && card.pipId !== StdFace.Joker) {
-            return true
-        } else {
-            return (this._pipValue > card.faceValue)
-        }   // if (this._aceHigh && ...)
+        return (this._pipValue > card.faceValue)
     }   // isGreaterThan()
 
     /**
@@ -99,11 +88,7 @@ class Card {
     //% card.shadow="variables_get"
     //% group="Cards"
     public isLessThan(card: Card): boolean {
-        if (this._aceHigh && this._pip === StdFace.Ace && card.pipId !== StdFace.Ace && card.pipId !== StdFace.Joker) {
-            return false
-        } else {
-            return (this._pipValue < card.faceValue)
-        }   // if (this._aceHigh && ...)
+        return (this._pipValue < card.faceValue)
     }   // isLessThan()
 
     /**
@@ -156,4 +141,11 @@ class Card {
     public get suitValue(): number {
         return this._suit
     }   // get suitValue()
+
+    /**
+     * @return {string} Text to print on card.
+     */
+    public get text(): string {
+        return this._text
+    }
 }   // class Card

@@ -150,39 +150,9 @@ namespace PlayingCards {
      * Compare face values of cards.
      * @param {Card} card1 - First ("left") card in comparison.
      * @param {Card} card2 - Second ("right") card in comparison.
-     * @return {number} - 0 means equal, -1 means first ("left") card is higher, 1 means second ("right") card is higher.
+     * @return {number} - 0 means equal, negative value means first ("left") card is higher, positive value means second ("right") card is higher.
      */
     export function compareCards(card1: Card, card2: Card): number {
-        if (card1.isAceHigh && (card1.pipId === StdFace.Ace || card2.pipId === StdFace.Ace)) {
-            if (card1.pipId === StdFace.Ace && card2.pipId === StdFace.Ace) {
-                return 0
-            } else {
-                if (card1.pipId === StdFace.Ace) {
-                    // Left card is an Ace.
-                    // Only a joker is higher.
-                    if (card2.pipId === StdFace.Joker) {
-                        return 1
-                    } else {
-                        return -1
-                    }   // if (card2.pipId === StdFace.Joker)
-                } else {
-                    // Right card is an Ace.
-                    // Only a joker is higher.
-                    if (card1.pipId === StdFace.Joker) {
-                        return -1
-                    } else {
-                        return 1
-                    }   // if (card1.pipId === StdFace.Joker)
-                }   // if (card1.pipId === StdFace.Ace)
-            }   // if (card1.pipId === StdFace.Ace...)
-        } else {
-            if (card1.faceValue < card2.faceValue) {
-                return 1
-            } else if (card1.faceValue > card2.faceValue) {
-                return -1
-            } else {
-                return 0
-            }   // if (card1.faceValue < card2.faceValue)
-        }   // if (card1.isAceHigh)
+        return card2.faceValue - card1.faceValue
     }   // compareCards()
 }   // namespace PlayingCards

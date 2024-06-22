@@ -139,7 +139,7 @@ class Deck {
         let pipName: string
         let suitName: string
         let cardName: string
-        let aceHigh: boolean
+        let text: string
         if (this._deckType === DeckType.Custom) {
             if (suit >= this._suits.length) {
                 suitName = 'Unsuited'
@@ -148,7 +148,7 @@ class Deck {
             }   // if (suit >= this._suits.length)
             pipVal = this._pipVals[pip]
             pipName = this._pipNames[pip]
-            aceHigh = false
+            text = this._pipChars[pip]
         } else {
             if (suit >= Deck._stdSuits.length) {
                 suitName = 'Unsuited'
@@ -158,10 +158,37 @@ class Deck {
             pipName = Deck._stdPipNames[pip]
             if (this._areFacesTen && pip >= StdFace.Jack && pip <= StdFace.King) {
                 pipVal = 10
+            } else if (pip == StdFace.Ace && this._isAceHigh) {
+                pipVal = 14
             } else {
                 pipVal = Deck._stdPipValues[pip]
             }   // if (this._areFacesTen...)
-            aceHigh = this._isAceHigh
+            switch (pip) {
+                case StdFace.Ace:
+                    text = 'A'
+                    break
+
+                case StdFace.Ten:
+                    text = '10'
+                    break
+
+                case StdFace.Jack:
+                case StdFace.Joker:
+                    text = 'J'
+                    break
+
+                case StdFace.Queen:
+                    text = 'Q'
+                    break
+
+                case StdFace.King:
+                    text = 'K'
+                    break
+
+                default:
+                    text = '' + pipVal
+                    break
+            }   // switch (pip)
         }   // if (this._deckType === DeckType.Custom)
         cardName = pipName
         if (suitName === 'Unsuited') {
@@ -169,7 +196,7 @@ class Deck {
         } else {
             cardName += ' of ' + suitName
         }   // if (suitName === 'Unsuited')
-        return new Card(cardId, cardName, pip, pipVal, pipName, suit, suitName, aceHigh)
+        return new Card(cardId, cardName, pip, pipVal, pipName, suit, suitName, text)
     }   // getCard()
 
     /**
@@ -181,7 +208,6 @@ class Deck {
     public getCardImage(card: Card, size: CardSpriteSize = CardSpriteSize.Size16x16): Image {
         let toReturn: Image
         let color: number
-        let toPrint: string
         if (this._deckType === DeckType.Custom) {
             toReturn = this._cardBases[card.suitValue].clone()
             if (card.suitValue >= this._suitColors.length) {
@@ -189,38 +215,10 @@ class Deck {
             } else {
                 color = this._suitColors[card.suitValue]
             }   // if (card.suitValue >= this._suitColors.length)
-            toPrint = this._pipChars[card.faceValue]
-            toReturn.printCenter(this._pipChars[card.pipId], 0, color, this._font)
+            toReturn.printCenter(card.text, 0, color, this._font)
         } else {
             toReturn = Deck._stdCardBases[size][card.suitValue].clone()
             color = Deck._stdSuitColors[card.suitValue]
-            switch (card.pipId) {
-                case StdFace.Ace:
-                    toPrint = 'A'
-                    break
-
-                case StdFace.Ten:
-                    toPrint = '10'
-                    break
-
-                case StdFace.Jack:
-                case StdFace.Joker:
-                    toPrint = 'J'
-                    break
-
-                case StdFace.Queen:
-                    toPrint = 'Q'
-                    break
-
-                case StdFace.King:
-                    toPrint = 'K'
-                    break
-
-                default:
-                    toPrint = '' + card.faceValue
-                    break
-            }   // switch (card.pipId)
-
             switch (size) {
                 case CardSpriteSize.Size8x8:
                     if (card.pipId === StdFace.Ten) {
@@ -230,7 +228,7 @@ class Deck {
                         toReturn.setPixel(3, 0, color)
                         toReturn.setPixel(3, 4, color)
                     } else {
-                        toReturn.printCenter(toPrint, 0, color, image.font5)
+                        toReturn.printCenter(card.text, 0, color, image.font5)
                     }   // if (this._fv === StdFace.Ten)
                     break
 
@@ -239,12 +237,12 @@ class Deck {
                         toReturn.drawLine(1, 1, 1, 6, color)
                         toReturn.print('0', 2, 0, color, image.font8)
                     } else {
-                        toReturn.printCenter(toPrint, 0, color, image.font8)
+                        toReturn.printCenter(card.text, 0, color, image.font8)
                     }
                     break
 
                 case CardSpriteSize.Size16x16:
-                    toReturn.printCenter(toPrint, 0, color, image.font8)
+                    toReturn.printCenter(card.text, 0, color, image.font8)
                     break
 
                 case CardSpriteSize.Size16x32:
@@ -252,12 +250,12 @@ class Deck {
                         toReturn.print('1', -1, 0, color, image.doubledFont(image.font8))
                         toReturn.print('0', 5, 0, color, image.doubledFont(image.font8))
                     } else {
-                        toReturn.printCenter(toPrint, 0, color, image.doubledFont(image.font8))
+                        toReturn.printCenter(card.text, 0, color, image.doubledFont(image.font8))
                     }
                     break
 
                 case CardSpriteSize.Size32x32:
-                    toReturn.printCenter(toPrint, 0, color, image.doubledFont(image.font8))
+                    toReturn.printCenter(card.text, 0, color, image.doubledFont(image.font8))
                     break
             }   // switch (size)
         }   // if (this._deckType === DeckType.Custom)
