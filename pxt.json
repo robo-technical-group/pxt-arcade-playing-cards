@@ -5,6 +5,7 @@
         "device": "*"
     },
     "files": [
+        "main.blocks",
         "main.ts",
         "playing-cards.ts",
         "images.g.jres",
