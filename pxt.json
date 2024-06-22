@@ -15,6 +15,9 @@
         "deck.ts",
         "README.md"
     ],
+    "testFiles": [
+        "test.ts"
+    ],
     "testDependencies": {},
     "targetVersions": {
         "target": "1.12.53",
