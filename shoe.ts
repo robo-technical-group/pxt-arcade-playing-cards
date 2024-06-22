@@ -62,9 +62,19 @@ class Shoe {
      * @return {boolean} Whether Aces are considers high-cards in this deck
      *                   Always false in custom decks.
      */
+    //% blockCombine group="Shoes (Decks)"
+    //% block="are aces high"
+    //% callInDebugger
     public get isAceHigh(): boolean {
         return this._deck.isAceHigh
     }   // get isAceHigh()
+
+    //% blockCombine group="Shoes (Decks)"
+    //% block="are aces high"
+    //% callInDebugger
+    public set isAceHigh(value: boolean) {
+        this._deck.isAceHigh = value
+    }
 
     /**
      * @return {Card} The next Card object in the shoe.

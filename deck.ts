@@ -110,12 +110,22 @@ class Deck {
     }   // get hasJokers()
 
     /**
-     * @return {boolean} Whether Aces are considers high-cards in this deck.
+     * @return {boolean} Whether Aces are considered high-cards in this deck.
      *                   Always false in custom decks.
      */
     public get isAceHigh(): boolean {
         return this._isAceHigh
     }   // get isAceHigh()
+
+    /**
+     * Sets whether Aces are high or low.
+     * @param {boolean} value - true if Aces are high, false if not.
+     */
+    public set isAceHigh(value: boolean) {
+        if (this.deckType != DeckType.Custom) {
+            this._isAceHigh = value
+        }
+    }
 
     /**
      * Returns a Card object for a given card ID.
