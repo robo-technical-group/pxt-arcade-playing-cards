@@ -94,6 +94,8 @@ namespace PlayingCards {
     //% deckType.defl=DeckType.Poker numJokers.defl=0
     //% expandableArgumentMode="toggle"
     //% hidden
+    //% blockSetVariable="theDeck"
+    //% weight=150
     export function createDeckSimple(deckType: DeckType = DeckType.Poker, numJokers: number = 0): Shoe {
         return new Shoe(deckType, 1, numJokers)
     }   // createDeckSimple()
@@ -106,6 +108,7 @@ namespace PlayingCards {
     //% group="Shoes (Decks)"
     //% block="create standard poker deck"
     //% blockSetVariable="theDeck"
+    //% weight=200
     export function createPokerDeck(): Shoe {
         return new Shoe()
     }   // createPokerDeck
@@ -138,6 +141,7 @@ namespace PlayingCards {
     //% expandableArgumentMode="toggle"
     //% hidden
     //% blockSetVariable="theShoe"
+    //% weight=100
     export function createShoeSimple(deckType: DeckType = DeckType.Poker, numDecks: number = 3, numJokers: number = 0): Shoe {
         return new Shoe(deckType, numDecks, numJokers)
     }   // createShoeSimple()

@@ -64,6 +64,7 @@ class Shoe {
      */
     //% blockCombine group="Shoes (Decks)"
     //% block="are aces high"
+    //% weight=70
     //% callInDebugger
     public get isAceHigh(): boolean {
         return this._deck.isAceHigh
@@ -72,6 +73,7 @@ class Shoe {
     //% blockCombine group="Shoes (Decks)"
     //% block="are aces high"
     //% callInDebugger
+    //% weight=75
     public set isAceHigh(value: boolean) {
         this._deck.isAceHigh = value
     }
