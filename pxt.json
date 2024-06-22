@@ -6,7 +6,13 @@
     },
     "files": [
         "main.ts",
-        "test.ts"
+        "playing-cards.ts",
+        "images.g.jres",
+        "images.g.ts",
+        "card.ts",
+        "enums.ts",
+        "shoe.ts",
+        "deck.ts"
     ],
     "testDependencies": {},
     "targetVersions": {
